@@ -47,6 +47,11 @@ class Increment
         );
     }
 
+    public function set_DB_name($db_name)
+    {
+        $this->pdo->exec("USE $db_name");
+    }
+
     public function count_up($id)
     {
         $query     = 'UPDATE atomic_counter SET count = count + 1 WHERE id = :id';
