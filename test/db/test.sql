@@ -1,7 +1,6 @@
-CREATE TABLE circle_test.AtomicCounter (
+CREATE TABLE test.atomic_counter (
     id SERIAL PRIMARY KEY
-  , count UNSIGNED INT DEFAULT 0
-  , index(id)
+  , count INT UNSIGNED DEFAULT 0
 );
 
-INSERT INTO circle_test.AtomicCounter(count) VALUES (3);
+INSERT INTO test.atomic_counter(count) VALUES (3);
