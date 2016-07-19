@@ -15,7 +15,7 @@ class Increment
     protected $host     = "localhost";
     protected $username = "root";
     protected $password = '';
-    protected $dbname   = "test";
+    protected $db_name  = "test";
     protected $charset  = "utf8";
     protected $options  = [
         PDO::ATTR_ERRMODE          => PDO::ERRMODE_EXCEPTION,
@@ -24,8 +24,8 @@ class Increment
 
     const Table_Name = "atomic_counter";
     const Schema     = [
-        'id'    => 'int',
-        'count' => 'int',
+        'id'    => PDO::PARAM_INT,
+        'count' => PDO::PARAM_INT,
     ];
 
     /**
@@ -34,7 +34,7 @@ class Increment
     public function __construct()
     {
         $dsn = "$this->rdb:" . join(';', [
-                "dbname=$this->dbname",
+                "dbname=$this->db_name",
                 "host=$this->host",
                 "charset=$this->charset",
             ]);
