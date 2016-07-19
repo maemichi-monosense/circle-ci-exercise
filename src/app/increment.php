@@ -2,34 +2,54 @@
 
 namespace UnitTest\Sample;
 
+use PDO;
+
 /**
  * Increment a value in MySQL
  */
 class Increment
 {
-    const Host = "localhost";
-    const User = "ubuntu";
-    const Pass = '';
-    const DBName = "circle_test";
+    protected $pdo;
 
-    private $link;
+    protected $rdb      = "mysql";
+    protected $host     = "localhost";
+    protected $user     = "root";
+    protected $password = '';
+    protected $dbname   = "test";
+    protected $charset  = "utf8";
+    protected $options  = [
+        PDO::ATTR_ERRMODE          => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_EMULATE_PREPARES => false,
+    ];
+
+    const Table_Name = "atomic_counter";
+    const Schema     = [
+        'id'    => 'int',
+        'count' => 'int',
+    ];
 
     /**
      * initializer
      */
     public function __construct()
     {
-        $this->link = new mysqli(self::Host, self::User, self::Pass, self::DBName);
-        if ($this->mysqli->connect_error) {
-            echo $this->mysqli->connect_error;
-            exit;
-        } else {
-            $this->mysqli->set_charset("utf8");
-        }
+        $this->pdo = new PDO(
+            "$this->rdb:" . join(';', [
+                "dbname=$this->dbname",
+                "host=$this->host",
+                "charset=$this->charset",
+            ]),
+            $this->user,
+            $this->password,
+            $this->options
+        );
     }
 
-    function __destruct()
+    public function count_up($id)
     {
-        $this->mysqli->close();
+        $query     = 'UPDATE atomic_counter SET count = count + 1 WHERE id = :id';
+        $statement = $this->pdo->prepare($query);
+        $statement->bindValue(':id', (int) $id, PDO::PARAM_INT);
+        $statement->execute();
     }
 }
