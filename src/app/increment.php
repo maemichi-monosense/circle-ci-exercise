@@ -13,7 +13,7 @@ class Increment
 
     protected $rdb      = "mysql";
     protected $host     = "localhost";
-    protected $user     = "root";
+    protected $username = "root";
     protected $password = '';
     protected $dbname   = "test";
     protected $charset  = "utf8";
@@ -33,13 +33,15 @@ class Increment
      */
     public function __construct()
     {
-        $this->pdo = new PDO(
-            "$this->rdb:" . join(';', [
+        $dsn = "$this->rdb:" . join(';', [
                 "dbname=$this->dbname",
                 "host=$this->host",
                 "charset=$this->charset",
-            ]),
-            $this->user,
+            ]);
+
+        $this->pdo = new PDO(
+            $dsn,
+            $this->username,
             $this->password,
             $this->options
         );
