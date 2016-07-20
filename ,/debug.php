@@ -6,8 +6,8 @@
  * Time: 16:50
  */
 
-require '../src/app/AtomicCounter.php';
-require '../test/app/TestUtil.php';
+require __DIR__ . '/../src/app/AtomicCounter.php';
+require __DIR__ . '/../test/app/TestUtil.php';
 
 $pdo = \UnitTest\Sample\Test\TestUtil::snatch_property(new \UnitTest\Sample\App\AtomicCounter(), 'pdo');
 // DEBUG
