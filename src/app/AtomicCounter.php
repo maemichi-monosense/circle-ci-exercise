@@ -64,10 +64,7 @@ SELECT count
 FROM atomic_counter 
 WHERE id = :id
 ';
-        $statement = $this->pdo->prepare($query);
-        $statement->bindValue(':id', (int) $id, PDO::PARAM_INT);
-        $statement->execute();
-        return $statement->fetchObject()->count;
+        return $this->query_count($query, $id);
     }
 
     /**
@@ -82,6 +79,17 @@ UPDATE atomic_counter
 SET count = count + 1 
 WHERE id = :id
 ';
+        return $this->query_count($query, $id);
+    }
+
+    /**
+     * @param string $query
+     * @param int $id
+     *
+     * @return int count
+     */
+    protected function query_count($query, $id)
+    {
         $statement = $this->pdo->prepare($query);
         $statement->bindValue(':id', (int) $id, PDO::PARAM_INT);
         $statement->execute();
