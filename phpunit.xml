@@ -8,6 +8,7 @@
         stopOnFailure="true"
         processIsolation="true"
         backupGlobals="false"
+        backupStaticAttributes="false"
         syntaxCheck="true"
         >
     <testsuite name="sample tests">
