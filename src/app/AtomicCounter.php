@@ -52,6 +52,29 @@ class AtomicCounter
         $this->pdo->exec("USE $db_name");
     }
 
+    /**
+     * @param int $id
+     *
+     * @return int current count
+     */
+    public function get_count($id)
+    {
+        $query = '
+SELECT count 
+FROM atomic_counter 
+WHERE id = :id
+';
+        $statement = $this->pdo->prepare($query);
+        $statement->bindValue(':id', (int) $id, PDO::PARAM_INT);
+        $statement->execute();
+        return $statement->fetchObject()->count;
+    }
+
+    /**
+     * @param int $id
+     *
+     * @return int new count
+     */
     public function count_up($id)
     {
         $query     = '
@@ -62,5 +85,6 @@ WHERE id = :id
         $statement = $this->pdo->prepare($query);
         $statement->bindValue(':id', (int) $id, PDO::PARAM_INT);
         $statement->execute();
+        return $statement->fetchObject()->count;
     }
 }
