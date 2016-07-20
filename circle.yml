@@ -6,7 +6,7 @@ machine:
 
 depensency:
   override:
-#    - php composer.phar install # auto run
+    - echo autorun composer install
 
 database:
   post:
@@ -15,4 +15,4 @@ database:
 
 test:
   override:
-    - echo Add PHP
+    - echo autorun phpunit
