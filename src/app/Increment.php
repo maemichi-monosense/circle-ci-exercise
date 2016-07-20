@@ -54,7 +54,11 @@ class Increment
 
     public function count_up($id)
     {
-        $query     = 'UPDATE atomic_counter SET count = count + 1 WHERE id = :id';
+        $query     = '
+UPDATE atomic_counter 
+SET count = count + 1 
+WHERE id = :id
+';
         $statement = $this->pdo->prepare($query);
         $statement->bindValue(':id', (int) $id, PDO::PARAM_INT);
         $statement->execute();
