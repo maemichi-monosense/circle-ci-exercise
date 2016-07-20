@@ -14,14 +14,16 @@ class TestUtil
      * @see \ReflectionClass
      * @see \ReflectionProperty
      *
-     * @param object|string $object
-     * @param string        $name
+     * @param object $object
+     * @param string $name
      *
-     * @return mixed
+     * @return mixed property of $object->$name.
      */
     public static function snatch_property($object, $name)
     {
         $ref_class = new \ReflectionClass($object);
-        return $ref_class->getProperty($name)->getValue();
+        $ref_prop  = $ref_class->getProperty($name);
+        $ref_prop->setAccessible(true);
+        return $ref_prop->getValue($object);
     }
 }
