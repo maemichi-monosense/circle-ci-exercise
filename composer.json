@@ -2,12 +2,14 @@
   "name": "circle_ci/trial",
   "autoload": {
     "psr-4": {
-      "UnitTest\\Sample\\": "src/app"
+      "UnitTest\\Sample\\App\\": "src/app",
+      "UnitTest\\Sample\\Test\\": "test/app"
     }
   },
   "require": {
   },
   "require-dev": {
-    "phpunit/phpunit": "@stable"
+    "phpunit/phpunit": "@stable",
+    "phpunit/php-code-coverage": "@stable"
   }
 }

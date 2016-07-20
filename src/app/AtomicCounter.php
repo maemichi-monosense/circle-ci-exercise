@@ -1,6 +1,6 @@
 <?php
 
-namespace UnitTest\Sample;
+namespace UnitTest\Sample\App;
 
 use PDO;
 

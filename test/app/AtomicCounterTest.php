@@ -1,8 +1,11 @@
 <?php
 
-namespace UnitTest\Sample;
+namespace UnitTest\Sample\Test;
 
-class AtomicCounterTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+use UnitTest\Sample\App\AtomicCounter;
+
+class AtomicCounterTest extends TestCase
 {
     // Object to be tested
     public $target;

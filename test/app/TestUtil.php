@@ -6,8 +6,7 @@
  * Time: 12:17
  */
 
-namespace UnitTest\Sample;
-
+namespace UnitTest\Sample\Test;
 
 class TestUtil
 {
