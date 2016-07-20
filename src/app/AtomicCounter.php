@@ -12,7 +12,7 @@ class AtomicCounter
     protected $pdo;
 
     protected $rdb      = "mysql";
-    protected $host     = "localhost";
+    protected $host     = "127.0.0.1";
     protected $username = "root";
     protected $password = '';
     protected $db_name  = "test";
