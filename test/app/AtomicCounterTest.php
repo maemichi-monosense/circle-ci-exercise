@@ -21,8 +21,12 @@ class AtomicCounterTest extends TestCase
     {
         $this->target = new AtomicCounter();
         $this->pdo    = clone TestUtil::snatch_property($this->target, 'pdo');
-        $this->pdo->exec('SHOW DATABASES');
-        $this->pdo->exec('SHOW TABLES');
+        // DEBUG
+        $databases = $this->pdo->query('SHOW DATABASES');
+        $tables    = $this->pdo->query('SHOW TABLES');
+        var_dump($databases, $tables);
+        $databases->closeCursor();
+        $tables->closeCursor();
     }
 
     public function testCountUp($id = 1)
