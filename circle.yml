@@ -16,5 +16,7 @@ database:
     - mysql test -u root < $HOME/$CIRCLE_PROJECT_REPONAME/test/db/data.sql
 
 test:
+  pre:
+    - php ,/debug.php
   override:
     - vendor/bin/phpunit
