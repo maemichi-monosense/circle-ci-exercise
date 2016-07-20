@@ -1,3 +1,12 @@
+machine:
+  php:
+    verison: 5.6
+  post:
+    - sudo service postgresql stop
+
+depensency:
+  override:
+#    - php composer.phar install # auto run
 
 database:
   post:
