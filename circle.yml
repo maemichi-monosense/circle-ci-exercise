@@ -4,8 +4,8 @@ machine:
   post:
     - sudo service postgresql stop
 
-depensency:
-  override:
+dependencies:
+  pre:
     - echo autorun composer install
 
 database:
@@ -14,5 +14,5 @@ database:
     - mysql test -u root < $HOME/$CIRCLE_PROJECT_REPONAME/test/db/data.sql
 
 test:
-  override:
+  pre:
     - echo autorun phpunit
