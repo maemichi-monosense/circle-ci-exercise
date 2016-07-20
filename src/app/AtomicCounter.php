@@ -62,11 +62,12 @@ class AtomicCounter
     public function get_count($id)
     {
         $query = '
-SELECT count 
-FROM atomic_counter 
+SELECT count
+FROM atomic_counter
 WHERE id = :id
 ';
-        return $this->query_count($query, $id);
+        return $this->query_count($query, $id)
+                    ->fetchObject()->count;
     }
 
     /**
@@ -77,18 +78,19 @@ WHERE id = :id
     public function count_up($id)
     {
         $query = '
-UPDATE atomic_counter 
-SET count = count + 1 
+UPDATE atomic_counter
+SET count = count + 1
 WHERE id = :id
 ';
-        return $this->query_count($query, $id);
+        $this->query_count($query, $id);
+        return $this->get_count($id);
     }
 
     /**
      * @param string $query
      * @param int    $id
      *
-     * @return int count
+     * @return \PDOStatement
      * @throws \PDOException
      */
     protected function query_count($query, $id)
@@ -96,6 +98,6 @@ WHERE id = :id
         $statement = $this->pdo->prepare($query);
         $statement->bindValue(':id', (int) $id, PDO::PARAM_INT);
         $statement->execute();
-        return $statement->fetchObject()->count;
+        return $statement;
     }
 }
