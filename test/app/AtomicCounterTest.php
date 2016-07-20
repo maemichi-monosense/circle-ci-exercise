@@ -2,7 +2,7 @@
 
 namespace UnitTest\Sample;
 
-class IncrementTest extends \PHPUnit_Framework_TestCase
+class AtomicCounterTest extends \PHPUnit_Framework_TestCase
 {
     // Object to be tested
     private $target;
@@ -14,7 +14,7 @@ class IncrementTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->target = new Increment();
+        $this->target = new AtomicCounter();
         $this->pdo = new \PDO('mysql:dbname=test;');
     }
 }

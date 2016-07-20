@@ -7,7 +7,7 @@ use PDO;
 /**
  * Increment a value in MySQL
  */
-class Increment
+class AtomicCounter
 {
     protected $pdo;
 
