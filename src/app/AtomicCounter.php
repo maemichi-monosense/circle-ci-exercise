@@ -30,6 +30,8 @@ class AtomicCounter
 
     /**
      * initializer
+     *
+     * @throws \PDOException
      */
     public function __construct()
     {
@@ -74,7 +76,7 @@ WHERE id = :id
      */
     public function count_up($id)
     {
-        $query     = '
+        $query = '
 UPDATE atomic_counter 
 SET count = count + 1 
 WHERE id = :id
@@ -84,9 +86,10 @@ WHERE id = :id
 
     /**
      * @param string $query
-     * @param int $id
+     * @param int    $id
      *
      * @return int count
+     * @throws \PDOException
      */
     protected function query_count($query, $id)
     {
