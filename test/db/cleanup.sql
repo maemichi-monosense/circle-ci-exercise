@@ -1,0 +1,1 @@
+TRUNCATE atomic_counter;
